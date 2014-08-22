@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <stdlib.h>
 namespace TrigSolver {
 
 	using namespace System;
@@ -8,10 +9,13 @@ namespace TrigSolver {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace std;
 
 	/// <summary>
-	/// Summary for Form1
+	/// TRIG SOLVER
+	/// Will gather inputs from text boxes, and solve a triangle using the given objects.
 	/// </summary>
+
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
@@ -77,6 +81,9 @@ namespace TrigSolver {
 	private: System::Windows::Forms::CheckBox^  chkAngleB;
 	private: System::Windows::Forms::CheckBox^  chkAngleA;
 	private: System::Windows::Forms::CheckBox^  chkSideC;
+	private: System::Windows::Forms::Panel^  pnlAllControls;
+
+
 
 
 
@@ -135,10 +142,12 @@ namespace TrigSolver {
 			this->chkAngleB = (gcnew System::Windows::Forms::CheckBox());
 			this->chkAngleA = (gcnew System::Windows::Forms::CheckBox());
 			this->chkSideC = (gcnew System::Windows::Forms::CheckBox());
+			this->pnlAllControls = (gcnew System::Windows::Forms::Panel());
 			this->grpSelectTriangle->SuspendLayout();
 			this->grpDegreeRadian->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleRight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleScal))->BeginInit();
+			this->pnlAllControls->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// rbtnSelectRight
@@ -168,7 +177,7 @@ namespace TrigSolver {
 			// txtAngleB
 			// 
 			this->txtAngleB->Enabled = false;
-			this->txtAngleB->Location = System::Drawing::Point(476, 260);
+			this->txtAngleB->Location = System::Drawing::Point(474, 256);
 			this->txtAngleB->Name = L"txtAngleB";
 			this->txtAngleB->Size = System::Drawing::Size(46, 20);
 			this->txtAngleB->TabIndex = 3;
@@ -177,7 +186,7 @@ namespace TrigSolver {
 			// txtSideC
 			// 
 			this->txtSideC->Enabled = false;
-			this->txtSideC->Location = System::Drawing::Point(12, 386);
+			this->txtSideC->Location = System::Drawing::Point(10, 382);
 			this->txtSideC->Name = L"txtSideC";
 			this->txtSideC->Size = System::Drawing::Size(46, 20);
 			this->txtSideC->TabIndex = 4;
@@ -185,7 +194,7 @@ namespace TrigSolver {
 			// txtAngleA
 			// 
 			this->txtAngleA->Enabled = false;
-			this->txtAngleA->Location = System::Drawing::Point(476, 134);
+			this->txtAngleA->Location = System::Drawing::Point(474, 130);
 			this->txtAngleA->Name = L"txtAngleA";
 			this->txtAngleA->Size = System::Drawing::Size(46, 20);
 			this->txtAngleA->TabIndex = 5;
@@ -194,7 +203,7 @@ namespace TrigSolver {
 			// txtSideB
 			// 
 			this->txtSideB->Enabled = false;
-			this->txtSideB->Location = System::Drawing::Point(12, 260);
+			this->txtSideB->Location = System::Drawing::Point(10, 256);
 			this->txtSideB->Name = L"txtSideB";
 			this->txtSideB->Size = System::Drawing::Size(46, 20);
 			this->txtSideB->TabIndex = 6;
@@ -202,14 +211,14 @@ namespace TrigSolver {
 			// txtSideA
 			// 
 			this->txtSideA->Enabled = false;
-			this->txtSideA->Location = System::Drawing::Point(12, 134);
+			this->txtSideA->Location = System::Drawing::Point(10, 130);
 			this->txtSideA->Name = L"txtSideA";
 			this->txtSideA->Size = System::Drawing::Size(46, 20);
 			this->txtSideA->TabIndex = 8;
 			// 
 			// btnSolve
 			// 
-			this->btnSolve->Location = System::Drawing::Point(117, 440);
+			this->btnSolve->Location = System::Drawing::Point(115, 436);
 			this->btnSolve->Name = L"btnSolve";
 			this->btnSolve->Size = System::Drawing::Size(300, 23);
 			this->btnSolve->TabIndex = 10;
@@ -221,7 +230,7 @@ namespace TrigSolver {
 			// 
 			this->grpSelectTriangle->Controls->Add(this->rbtnSelectRight);
 			this->grpSelectTriangle->Controls->Add(this->rbtnSelectOther);
-			this->grpSelectTriangle->Location = System::Drawing::Point(12, 22);
+			this->grpSelectTriangle->Location = System::Drawing::Point(10, 18);
 			this->grpSelectTriangle->Name = L"grpSelectTriangle";
 			this->grpSelectTriangle->Size = System::Drawing::Size(114, 66);
 			this->grpSelectTriangle->TabIndex = 11;
@@ -231,7 +240,7 @@ namespace TrigSolver {
 			// 
 			this->grpDegreeRadian->Controls->Add(this->rbtnAngleRadian);
 			this->grpDegreeRadian->Controls->Add(this->rbtnAngleDegree);
-			this->grpDegreeRadian->Location = System::Drawing::Point(423, 22);
+			this->grpDegreeRadian->Location = System::Drawing::Point(421, 18);
 			this->grpDegreeRadian->Name = L"grpDegreeRadian";
 			this->grpDegreeRadian->Size = System::Drawing::Size(99, 66);
 			this->grpDegreeRadian->TabIndex = 12;
@@ -265,7 +274,7 @@ namespace TrigSolver {
 			// picTriangleRight
 			// 
 			this->picTriangleRight->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"picTriangleRight.Image")));
-			this->picTriangleRight->Location = System::Drawing::Point(117, 105);
+			this->picTriangleRight->Location = System::Drawing::Point(115, 101);
 			this->picTriangleRight->Name = L"picTriangleRight";
 			this->picTriangleRight->Size = System::Drawing::Size(300, 300);
 			this->picTriangleRight->TabIndex = 2;
@@ -275,7 +284,7 @@ namespace TrigSolver {
 			// picTriangleScal
 			// 
 			this->picTriangleScal->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"picTriangleScal.Image")));
-			this->picTriangleScal->Location = System::Drawing::Point(117, 105);
+			this->picTriangleScal->Location = System::Drawing::Point(115, 101);
 			this->picTriangleScal->Name = L"picTriangleScal";
 			this->picTriangleScal->Size = System::Drawing::Size(299, 300);
 			this->picTriangleScal->TabIndex = 13;
@@ -285,7 +294,7 @@ namespace TrigSolver {
 			// txtAngleC
 			// 
 			this->txtAngleC->Enabled = false;
-			this->txtAngleC->Location = System::Drawing::Point(476, 386);
+			this->txtAngleC->Location = System::Drawing::Point(474, 382);
 			this->txtAngleC->Name = L"txtAngleC";
 			this->txtAngleC->Size = System::Drawing::Size(46, 20);
 			this->txtAngleC->TabIndex = 14;
@@ -295,7 +304,7 @@ namespace TrigSolver {
 			this->lblTitle->AutoSize = true;
 			this->lblTitle->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 15.75F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)), 
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lblTitle->Location = System::Drawing::Point(145, 35);
+			this->lblTitle->Location = System::Drawing::Point(143, 31);
 			this->lblTitle->Name = L"lblTitle";
 			this->lblTitle->Size = System::Drawing::Size(250, 27);
 			this->lblTitle->TabIndex = 15;
@@ -306,7 +315,7 @@ namespace TrigSolver {
 			this->lblTriType->AutoSize = true;
 			this->lblTriType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblTriType->Location = System::Drawing::Point(18, 14);
+			this->lblTriType->Location = System::Drawing::Point(16, 10);
 			this->lblTriType->Name = L"lblTriType";
 			this->lblTriType->Size = System::Drawing::Size(85, 13);
 			this->lblTriType->TabIndex = 16;
@@ -317,7 +326,7 @@ namespace TrigSolver {
 			this->lblAngleUnits->AutoSize = true;
 			this->lblAngleUnits->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblAngleUnits->Location = System::Drawing::Point(444, 14);
+			this->lblAngleUnits->Location = System::Drawing::Point(442, 10);
 			this->lblAngleUnits->Name = L"lblAngleUnits";
 			this->lblAngleUnits->Size = System::Drawing::Size(72, 13);
 			this->lblAngleUnits->TabIndex = 17;
@@ -329,7 +338,7 @@ namespace TrigSolver {
 			this->lblSideA->AutoSize = true;
 			this->lblSideA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblSideA->Location = System::Drawing::Point(9, 118);
+			this->lblSideA->Location = System::Drawing::Point(7, 114);
 			this->lblSideA->Name = L"lblSideA";
 			this->lblSideA->Size = System::Drawing::Size(44, 13);
 			this->lblSideA->TabIndex = 18;
@@ -340,7 +349,7 @@ namespace TrigSolver {
 			this->lblSideB->AutoSize = true;
 			this->lblSideB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblSideB->Location = System::Drawing::Point(9, 244);
+			this->lblSideB->Location = System::Drawing::Point(7, 240);
 			this->lblSideB->Name = L"lblSideB";
 			this->lblSideB->Size = System::Drawing::Size(44, 13);
 			this->lblSideB->TabIndex = 19;
@@ -351,7 +360,7 @@ namespace TrigSolver {
 			this->lblSideC->AutoSize = true;
 			this->lblSideC->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblSideC->Location = System::Drawing::Point(9, 370);
+			this->lblSideC->Location = System::Drawing::Point(7, 366);
 			this->lblSideC->Name = L"lblSideC";
 			this->lblSideC->Size = System::Drawing::Size(44, 13);
 			this->lblSideC->TabIndex = 20;
@@ -362,7 +371,7 @@ namespace TrigSolver {
 			this->lblAngA->AutoSize = true;
 			this->lblAngA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblAngA->Location = System::Drawing::Point(473, 118);
+			this->lblAngA->Location = System::Drawing::Point(471, 114);
 			this->lblAngA->Name = L"lblAngA";
 			this->lblAngA->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->lblAngA->Size = System::Drawing::Size(50, 13);
@@ -374,7 +383,7 @@ namespace TrigSolver {
 			this->lblAngB->AutoSize = true;
 			this->lblAngB->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblAngB->Location = System::Drawing::Point(473, 244);
+			this->lblAngB->Location = System::Drawing::Point(471, 240);
 			this->lblAngB->Name = L"lblAngB";
 			this->lblAngB->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->lblAngB->Size = System::Drawing::Size(50, 13);
@@ -386,7 +395,7 @@ namespace TrigSolver {
 			this->lblAngC->AutoSize = true;
 			this->lblAngC->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->lblAngC->Location = System::Drawing::Point(473, 370);
+			this->lblAngC->Location = System::Drawing::Point(471, 366);
 			this->lblAngC->Name = L"lblAngC";
 			this->lblAngC->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->lblAngC->Size = System::Drawing::Size(50, 13);
@@ -396,7 +405,7 @@ namespace TrigSolver {
 			// chkSideA
 			// 
 			this->chkSideA->AutoSize = true;
-			this->chkSideA->Location = System::Drawing::Point(64, 137);
+			this->chkSideA->Location = System::Drawing::Point(62, 133);
 			this->chkSideA->Name = L"chkSideA";
 			this->chkSideA->Size = System::Drawing::Size(15, 14);
 			this->chkSideA->TabIndex = 24;
@@ -406,7 +415,7 @@ namespace TrigSolver {
 			// chkSideB
 			// 
 			this->chkSideB->AutoSize = true;
-			this->chkSideB->Location = System::Drawing::Point(64, 263);
+			this->chkSideB->Location = System::Drawing::Point(62, 259);
 			this->chkSideB->Name = L"chkSideB";
 			this->chkSideB->Size = System::Drawing::Size(15, 14);
 			this->chkSideB->TabIndex = 25;
@@ -416,7 +425,7 @@ namespace TrigSolver {
 			// chkAngleC
 			// 
 			this->chkAngleC->AutoSize = true;
-			this->chkAngleC->Location = System::Drawing::Point(455, 389);
+			this->chkAngleC->Location = System::Drawing::Point(453, 385);
 			this->chkAngleC->Name = L"chkAngleC";
 			this->chkAngleC->Size = System::Drawing::Size(15, 14);
 			this->chkAngleC->TabIndex = 26;
@@ -426,7 +435,7 @@ namespace TrigSolver {
 			// chkAngleB
 			// 
 			this->chkAngleB->AutoSize = true;
-			this->chkAngleB->Location = System::Drawing::Point(455, 263);
+			this->chkAngleB->Location = System::Drawing::Point(453, 259);
 			this->chkAngleB->Name = L"chkAngleB";
 			this->chkAngleB->Size = System::Drawing::Size(15, 14);
 			this->chkAngleB->TabIndex = 27;
@@ -436,7 +445,7 @@ namespace TrigSolver {
 			// chkAngleA
 			// 
 			this->chkAngleA->AutoSize = true;
-			this->chkAngleA->Location = System::Drawing::Point(455, 137);
+			this->chkAngleA->Location = System::Drawing::Point(453, 133);
 			this->chkAngleA->Name = L"chkAngleA";
 			this->chkAngleA->Size = System::Drawing::Size(15, 14);
 			this->chkAngleA->TabIndex = 28;
@@ -446,44 +455,52 @@ namespace TrigSolver {
 			// chkSideC
 			// 
 			this->chkSideC->AutoSize = true;
-			this->chkSideC->Location = System::Drawing::Point(64, 389);
+			this->chkSideC->Location = System::Drawing::Point(62, 385);
 			this->chkSideC->Name = L"chkSideC";
 			this->chkSideC->Size = System::Drawing::Size(15, 14);
 			this->chkSideC->TabIndex = 29;
 			this->chkSideC->UseVisualStyleBackColor = true;
 			this->chkSideC->CheckedChanged += gcnew System::EventHandler(this, &Form1::chkSideC_CheckedChanged);
 			// 
+			// pnlAllControls
+			// 
+			this->pnlAllControls->Controls->Add(this->chkSideC);
+			this->pnlAllControls->Controls->Add(this->chkAngleA);
+			this->pnlAllControls->Controls->Add(this->chkAngleB);
+			this->pnlAllControls->Controls->Add(this->chkAngleC);
+			this->pnlAllControls->Controls->Add(this->chkSideB);
+			this->pnlAllControls->Controls->Add(this->chkSideA);
+			this->pnlAllControls->Controls->Add(this->lblAngC);
+			this->pnlAllControls->Controls->Add(this->lblAngB);
+			this->pnlAllControls->Controls->Add(this->lblAngA);
+			this->pnlAllControls->Controls->Add(this->lblSideC);
+			this->pnlAllControls->Controls->Add(this->lblSideB);
+			this->pnlAllControls->Controls->Add(this->lblSideA);
+			this->pnlAllControls->Controls->Add(this->lblAngleUnits);
+			this->pnlAllControls->Controls->Add(this->lblTriType);
+			this->pnlAllControls->Controls->Add(this->lblTitle);
+			this->pnlAllControls->Controls->Add(this->txtAngleC);
+			this->pnlAllControls->Controls->Add(this->picTriangleScal);
+			this->pnlAllControls->Controls->Add(this->grpDegreeRadian);
+			this->pnlAllControls->Controls->Add(this->grpSelectTriangle);
+			this->pnlAllControls->Controls->Add(this->btnSolve);
+			this->pnlAllControls->Controls->Add(this->txtSideA);
+			this->pnlAllControls->Controls->Add(this->txtSideB);
+			this->pnlAllControls->Controls->Add(this->txtAngleA);
+			this->pnlAllControls->Controls->Add(this->txtSideC);
+			this->pnlAllControls->Controls->Add(this->txtAngleB);
+			this->pnlAllControls->Controls->Add(this->picTriangleRight);
+			this->pnlAllControls->Location = System::Drawing::Point(2, 4);
+			this->pnlAllControls->Name = L"pnlAllControls";
+			this->pnlAllControls->Size = System::Drawing::Size(534, 482);
+			this->pnlAllControls->TabIndex = 30;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(534, 483);
-			this->Controls->Add(this->chkSideC);
-			this->Controls->Add(this->chkAngleA);
-			this->Controls->Add(this->chkAngleB);
-			this->Controls->Add(this->chkAngleC);
-			this->Controls->Add(this->chkSideB);
-			this->Controls->Add(this->chkSideA);
-			this->Controls->Add(this->lblAngC);
-			this->Controls->Add(this->lblAngB);
-			this->Controls->Add(this->lblAngA);
-			this->Controls->Add(this->lblSideC);
-			this->Controls->Add(this->lblSideB);
-			this->Controls->Add(this->lblSideA);
-			this->Controls->Add(this->lblAngleUnits);
-			this->Controls->Add(this->lblTriType);
-			this->Controls->Add(this->lblTitle);
-			this->Controls->Add(this->txtAngleC);
-			this->Controls->Add(this->picTriangleScal);
-			this->Controls->Add(this->grpDegreeRadian);
-			this->Controls->Add(this->grpSelectTriangle);
-			this->Controls->Add(this->btnSolve);
-			this->Controls->Add(this->txtSideA);
-			this->Controls->Add(this->txtSideB);
-			this->Controls->Add(this->txtAngleA);
-			this->Controls->Add(this->txtSideC);
-			this->Controls->Add(this->txtAngleB);
-			this->Controls->Add(this->picTriangleRight);
+			this->Controls->Add(this->pnlAllControls);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Form1";
 			this->Text = L"TrigSolver by Stew Esho";
@@ -494,11 +511,21 @@ namespace TrigSolver {
 			this->grpDegreeRadian->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleRight))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleScal))->EndInit();
+			this->pnlAllControls->ResumeLayout(false);
+			this->pnlAllControls->PerformLayout();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
+///Will convert System::String to std::string
+void ConvertString ( String ^ s, string& os ) {
+   using namespace Runtime::InteropServices;
+   const char* chars = 
+      (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+   os = chars;
+   Marshal::FreeHGlobal(IntPtr((void*)chars));
+}
+
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -517,7 +544,7 @@ private: System::Void rbtnSelectRight_CheckedChanged(System::Object^  sender, Sy
 			chkAngleC->Checked = false;
 			chkAngleC->Enabled = false;
 			txtAngleC->Text = "90";
-		 }//end of rbtnSelectRight_CheckedChanged
+		 }///end of rbtnSelectRight_CheckedChanged
 private: System::Void rbtnSelectScal_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			picTriangleRight->Visible = false;
 			picTriangleScal->Visible = true;
@@ -535,7 +562,7 @@ private: System::Void chkSideA_CheckedChanged(System::Object^  sender, System::E
 			 if (chkSideA->Checked == false){
 				 txtSideA->Enabled = false;
 			 }
-		 }//end of chkSideA_CheckedChanged
+		 }///end of chkSideA_CheckedChanged
 private: System::Void chkSideB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
 			 if (chkSideB->Checked == true){
@@ -544,7 +571,7 @@ private: System::Void chkSideB_CheckedChanged(System::Object^  sender, System::E
 			 if (chkSideB->Checked == false){
 				 txtSideB->Enabled = false;
 			 }
-		 }//end of chkSideB_CheckedChanged
+		 }///end of chkSideB_CheckedChanged
 private: System::Void chkSideC_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
 			 if (chkSideC->Checked == true){
@@ -553,7 +580,7 @@ private: System::Void chkSideC_CheckedChanged(System::Object^  sender, System::E
 			 if (chkSideC->Checked == false){
 				 txtSideC->Enabled = false;
 			 }
-		 }//end of chkSideC_CheckedChanged
+		 }///end of chkSideC_CheckedChanged
 private: System::Void chkAngleA_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
 			 if (chkAngleA->Checked == true){
@@ -562,7 +589,7 @@ private: System::Void chkAngleA_CheckedChanged(System::Object^  sender, System::
 			 if (chkAngleA->Checked == false){
 				 txtAngleA->Enabled = false;
 			 }
-		 }//end of chkAngleA_CheckedChanged
+		 }///end of chkAngleA_CheckedChanged
 private: System::Void chkAngleB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
 			 if (chkAngleB->Checked == true){
@@ -571,7 +598,7 @@ private: System::Void chkAngleB_CheckedChanged(System::Object^  sender, System::
 			 if (chkAngleB->Checked == false){
 				 txtAngleB->Enabled = false;
 			 }
-		 }//end of chkAngleB_CheckedChanged
+		 }///end of chkAngleB_CheckedChanged
 private: System::Void chkAngleC_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
 			 if (chkAngleC->Checked == true){
@@ -580,24 +607,49 @@ private: System::Void chkAngleC_CheckedChanged(System::Object^  sender, System::
 			 if (chkAngleC->Checked == false){
 				 txtAngleC->Enabled = false;
 			 }
-		 }//end of chkAngleC_CheckedChanged
+		 }///end of chkAngleC_CheckedChanged
 		 //Code Below occurs aftwer Solve button is pressed.
 		 //Locks the other elements, and solves the triangle
-private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^  e) { 
+private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //disables all controls
+			 pnlAllControls->Enabled = false;
 			 //gets input from textboxes, and converts to ints
-			/* String ^ sideA = txtSideA->Text;
-			 String ^ sideB = txtSideB->Text;
-			 String ^ sideC = txtSideC->Text;
-			 String ^ angleA = txtAngleA->Text;
-			 String ^ angleB = txtAngleB->Text;
-			 String ^ angleC = txtAngleC->Text;
-			 std::stoi( sideA );
-			 std::stoi( sideB );
-			 std::stoi( sideC );
-			 std::stoi( angleA );
-			 std::stoi( angleB );
-			 std::stoi( angleC ); */
-		 } //end of btnSolve_Click
+			 if (txtSideA->Enabled == true){
+				String^ sa = txtSideA->Text;
+				string sideA;
+				ConvertString(sa, sideA);
+			 }
+			 if (txtSideB->Enabled == true){
+				String^ sb = txtSideB->Text;
+				string sideB;
+				ConvertString(sb, sideB);
+			 }
+			 if (txtSideC->Enabled == true){
+				String^ sc = txtSideC->Text;
+				string sideC;
+				ConvertString(sc, sideC);
+			 }
+			 if (txtAngleA->Enabled == true){
+				String^ aa = txtAngleA->Text;
+				string angleA;
+				ConvertString(aa, angleA);
+			 }
+			 if (txtAngleB->Enabled == true){
+				String^ ab = txtAngleB->Text;
+				string angleB;
+				ConvertString(ab, angleB);
+			 }
+			 if (txtAngleC->Enabled == true){
+				if (rbtnSelectOther->Checked == true){
+					String^ ac = txtAngleC->Text;
+					string angleC;
+					ConvertString(ac, angleC);
+				}
+				else{
+					string angleC = "90";
+				}
+			 }
+		 } ///end of btnSolve_Click
 };
 }
 
