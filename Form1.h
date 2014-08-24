@@ -1,6 +1,10 @@
 #pragma once
+#include <sstream>
 #include <string>
 #include <stdlib.h>
+#include <iostream>
+#include <cmath>
+
 namespace TrigSolver {
 
 	using namespace System;
@@ -517,15 +521,85 @@ namespace TrigSolver {
 
 		}
 #pragma endregion
-///Will convert System::String to std::string
-void ConvertString ( String ^ s, string& os ) {
+///VARIABLES
+
+//Variables to store the info
+double sideA, sideB, sideC;
+double angleA, angleB, angleC;
+//Stores weather or not the user inputted information
+static bool isSideAInputted = false, isSideBInputted = false, isSideCInputted = false;
+static bool isAngleAInputted = false, isAngleBInputted = false, isAngleCInputted = false;
+
+///FUNCTIONS
+//Will set up the variables for the calculations, runs at "SOLVE" button press
+void buttonPressSetup(){
+	//disables all controls
+	pnlAllControls->Enabled = false;
+	//gets input from textboxes, and converts to ints
+	if (txtSideA->Enabled == true){
+		String^ sa = txtSideA->Text;
+		string sideAstr;
+		convertString(sa, sideAstr);
+		sideA = stringToDouble(sideAstr);
+		isSideAInputted = true;
+	}
+	if (txtSideB->Enabled == true){
+		String^ sb = txtSideB->Text;
+		string sideBstr;
+		convertString(sb, sideBstr);
+		sideB = stringToDouble(sideBstr);
+		isSideBInputted = true;
+	}
+	if (txtSideC->Enabled == true){
+		String^ sc = txtSideC->Text;
+		string sideCstr;
+		convertString(sc, sideCstr);
+		sideC = stringToDouble(sideCstr);
+		isSideCInputted = true;
+	}
+	if (txtAngleA->Enabled == true){
+		String^ aa = txtAngleA->Text;
+		string angleAstr;
+		convertString(aa, angleAstr);
+		angleA = stringToDouble(angleAstr);
+		isAngleAInputted = true;
+	}
+	if (txtAngleB->Enabled == true){
+		String^ ab = txtAngleB->Text;
+		string angleBstr;
+		convertString(ab, angleBstr);
+		angleB = stringToDouble(angleBstr);
+		isAngleBInputted = true;
+	}
+	if (chkAngleC->Checked == true){
+		String^ ac = txtAngleC->Text;
+		string angleCstr;
+		convertString(ac, angleCstr);
+		angleC = stringToDouble(angleCstr);
+		isAngleCInputted = true;
+	}
+}
+
+//Will convert System::String to std::string
+void convertString ( String ^ s, string& os ) {
    using namespace Runtime::InteropServices;
    const char* chars = 
       (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
    os = chars;
    Marshal::FreeHGlobal(IntPtr((void*)chars));
 }
+//Will convert string to double
+double stringToDouble( const std::string& inputString)
+ {
+   istringstream convert(inputString);
+   double x;
+   if (!(convert >> x))
+     return 0;
+   return x;
+} 
 
+
+///CONTROLS' CODE
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	private: System::Void radioButton1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -541,15 +615,17 @@ private: System::Void rbtnSelectRight_CheckedChanged(System::Object^  sender, Sy
 			picTriangleRight->Visible = true;
 			picTriangleScal->Visible = false;
 			//sets angle C to 90 degrees
-			chkAngleC->Checked = false;
+			chkAngleC->Checked = true;
 			chkAngleC->Enabled = false;
 			txtAngleC->Text = "90";
+			txtAngleC->Enabled = false;
 		 }///end of rbtnSelectRight_CheckedChanged
 private: System::Void rbtnSelectScal_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			picTriangleRight->Visible = false;
 			picTriangleScal->Visible = true;
 			//removes angle C default text
 			chkAngleC->Enabled = true;
+			chkAngleC->Checked = false;
 			txtAngleC->Text = "";
 		 }//end of rbtnSelectScal_CheckedChanged
 		 //**************
@@ -611,43 +687,26 @@ private: System::Void chkAngleC_CheckedChanged(System::Object^  sender, System::
 		 //Code Below occurs aftwer Solve button is pressed.
 		 //Locks the other elements, and solves the triangle
 private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^  e) {
-			 //disables all controls
-			 pnlAllControls->Enabled = false;
-			 //gets input from textboxes, and converts to ints
-			 if (txtSideA->Enabled == true){
-				String^ sa = txtSideA->Text;
-				string sideA;
-				ConvertString(sa, sideA);
-			 }
-			 if (txtSideB->Enabled == true){
-				String^ sb = txtSideB->Text;
-				string sideB;
-				ConvertString(sb, sideB);
-			 }
-			 if (txtSideC->Enabled == true){
-				String^ sc = txtSideC->Text;
-				string sideC;
-				ConvertString(sc, sideC);
-			 }
-			 if (txtAngleA->Enabled == true){
-				String^ aa = txtAngleA->Text;
-				string angleA;
-				ConvertString(aa, angleA);
-			 }
-			 if (txtAngleB->Enabled == true){
-				String^ ab = txtAngleB->Text;
-				string angleB;
-				ConvertString(ab, angleB);
-			 }
-			 if (txtAngleC->Enabled == true){
-				if (rbtnSelectOther->Checked == true){
-					String^ ac = txtAngleC->Text;
-					string angleC;
-					ConvertString(ac, angleC);
-				}
-				else{
-					string angleC = "90";
-				}
+			 buttonPressSetup();
+			 //Right Triangle trig
+			 if (rbtnSelectRight->Checked == true){
+				 //sees if two sides are known, and if so use pythagorean theorem
+				 if (isSideAInputted+isSideBInputted+isSideCInputted == 2){ // expression adds values of the bools, and proceeds if sum is 2
+					 if (isSideAInputted == true && isSideBInputted == true){//finding side C using A^2 + B^2 = C^2
+						 sideC = sqrt(pow(sideA, 2) + pow(sideB, 2));
+						 isSideCInputted = true;
+					 }
+					 else{
+						 if (isSideAInputted == false){//finding side A
+							 sideA = sqrt(pow(sideC, 2) - pow(sideB, 2));
+							 isSideAInputted = true;
+						 }
+						 else{ // finding side B
+							 sideB = sqrt(pow(sideC, 2) - pow(sideA, 2));
+							 isSideBInputted = true;
+						 }
+					 }
+				 }
 			 }
 		 } ///end of btnSolve_Click
 };
