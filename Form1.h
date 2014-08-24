@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 
+
 namespace TrigSolver {
 
 	using namespace System;
@@ -86,6 +87,13 @@ namespace TrigSolver {
 	private: System::Windows::Forms::CheckBox^  chkAngleA;
 	private: System::Windows::Forms::CheckBox^  chkSideC;
 	private: System::Windows::Forms::Panel^  pnlAllControls;
+	private: System::Windows::Forms::Label^  lblSideAAns;
+	private: System::Windows::Forms::Label^  lblAngleCAns;
+	private: System::Windows::Forms::Label^  lblAngleBAns;
+	private: System::Windows::Forms::Label^  lblAngleAAns;
+	private: System::Windows::Forms::Label^  lblSideCAns;
+	private: System::Windows::Forms::Label^  lblSideBAns;
+
 
 
 
@@ -147,6 +155,12 @@ namespace TrigSolver {
 			this->chkAngleA = (gcnew System::Windows::Forms::CheckBox());
 			this->chkSideC = (gcnew System::Windows::Forms::CheckBox());
 			this->pnlAllControls = (gcnew System::Windows::Forms::Panel());
+			this->lblAngleCAns = (gcnew System::Windows::Forms::Label());
+			this->lblAngleBAns = (gcnew System::Windows::Forms::Label());
+			this->lblAngleAAns = (gcnew System::Windows::Forms::Label());
+			this->lblSideCAns = (gcnew System::Windows::Forms::Label());
+			this->lblSideBAns = (gcnew System::Windows::Forms::Label());
+			this->lblSideAAns = (gcnew System::Windows::Forms::Label());
 			this->grpSelectTriangle->SuspendLayout();
 			this->grpDegreeRadian->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleRight))->BeginInit();
@@ -468,6 +482,12 @@ namespace TrigSolver {
 			// 
 			// pnlAllControls
 			// 
+			this->pnlAllControls->Controls->Add(this->lblAngleCAns);
+			this->pnlAllControls->Controls->Add(this->lblAngleBAns);
+			this->pnlAllControls->Controls->Add(this->lblAngleAAns);
+			this->pnlAllControls->Controls->Add(this->lblSideCAns);
+			this->pnlAllControls->Controls->Add(this->lblSideBAns);
+			this->pnlAllControls->Controls->Add(this->lblSideAAns);
 			this->pnlAllControls->Controls->Add(this->chkSideC);
 			this->pnlAllControls->Controls->Add(this->chkAngleA);
 			this->pnlAllControls->Controls->Add(this->chkAngleB);
@@ -498,6 +518,61 @@ namespace TrigSolver {
 			this->pnlAllControls->Name = L"pnlAllControls";
 			this->pnlAllControls->Size = System::Drawing::Size(534, 482);
 			this->pnlAllControls->TabIndex = 30;
+			this->pnlAllControls->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pnlAllControls_Paint);
+			// 
+			// lblAngleCAns
+			// 
+			this->lblAngleCAns->AutoSize = true;
+			this->lblAngleCAns->Location = System::Drawing::Point(485, 405);
+			this->lblAngleCAns->Name = L"lblAngleCAns";
+			this->lblAngleCAns->Size = System::Drawing::Size(0, 13);
+			this->lblAngleCAns->TabIndex = 35;
+			this->lblAngleCAns->Text = L" ";
+			// 
+			// lblAngleBAns
+			// 
+			this->lblAngleBAns->AutoSize = true;
+			this->lblAngleBAns->Location = System::Drawing::Point(485, 279);
+			this->lblAngleBAns->Name = L"lblAngleBAns";
+			this->lblAngleBAns->Size = System::Drawing::Size(10, 13);
+			this->lblAngleBAns->TabIndex = 34;
+			this->lblAngleBAns->Text = L" ";
+			// 
+			// lblAngleAAns
+			// 
+			this->lblAngleAAns->AutoSize = true;
+			this->lblAngleAAns->Location = System::Drawing::Point(485, 153);
+			this->lblAngleAAns->Name = L"lblAngleAAns";
+			this->lblAngleAAns->Size = System::Drawing::Size(10, 13);
+			this->lblAngleAAns->TabIndex = 33;
+			this->lblAngleAAns->Text = L" ";
+			// 
+			// lblSideCAns
+			// 
+			this->lblSideCAns->AutoSize = true;
+			this->lblSideCAns->Location = System::Drawing::Point(10, 405);
+			this->lblSideCAns->Name = L"lblSideCAns";
+			this->lblSideCAns->Size = System::Drawing::Size(10, 13);
+			this->lblSideCAns->TabIndex = 32;
+			this->lblSideCAns->Text = L" ";
+			// 
+			// lblSideBAns
+			// 
+			this->lblSideBAns->AutoSize = true;
+			this->lblSideBAns->Location = System::Drawing::Point(10, 279);
+			this->lblSideBAns->Name = L"lblSideBAns";
+			this->lblSideBAns->Size = System::Drawing::Size(10, 13);
+			this->lblSideBAns->TabIndex = 31;
+			this->lblSideBAns->Text = L" ";
+			// 
+			// lblSideAAns
+			// 
+			this->lblSideAAns->AutoSize = true;
+			this->lblSideAAns->Location = System::Drawing::Point(10, 153);
+			this->lblSideAAns->Name = L"lblSideAAns";
+			this->lblSideAAns->Size = System::Drawing::Size(10, 13);
+			this->lblSideAAns->TabIndex = 30;
+			this->lblSideAAns->Text = L" ";
 			// 
 			// Form1
 			// 
@@ -536,42 +611,42 @@ void buttonPressSetup(){
 	//disables all controls
 	pnlAllControls->Enabled = false;
 	//gets input from textboxes, and converts to ints
-	if (txtSideA->Enabled == true){
+	if (txtSideA->Enabled){
 		String^ sa = txtSideA->Text;
 		string sideAstr;
 		convertString(sa, sideAstr);
 		sideA = stringToDouble(sideAstr);
 		isSideAInputted = true;
 	}
-	if (txtSideB->Enabled == true){
+	if (txtSideB->Enabled){
 		String^ sb = txtSideB->Text;
 		string sideBstr;
 		convertString(sb, sideBstr);
 		sideB = stringToDouble(sideBstr);
 		isSideBInputted = true;
 	}
-	if (txtSideC->Enabled == true){
+	if (txtSideC->Enabled){
 		String^ sc = txtSideC->Text;
 		string sideCstr;
 		convertString(sc, sideCstr);
 		sideC = stringToDouble(sideCstr);
 		isSideCInputted = true;
 	}
-	if (txtAngleA->Enabled == true){
+	if (txtAngleA->Enabled){
 		String^ aa = txtAngleA->Text;
 		string angleAstr;
 		convertString(aa, angleAstr);
 		angleA = stringToDouble(angleAstr);
 		isAngleAInputted = true;
 	}
-	if (txtAngleB->Enabled == true){
+	if (txtAngleB->Enabled){
 		String^ ab = txtAngleB->Text;
 		string angleBstr;
 		convertString(ab, angleBstr);
 		angleB = stringToDouble(angleBstr);
 		isAngleBInputted = true;
 	}
-	if (chkAngleC->Checked == true){
+	if (chkAngleC->Checked){
 		String^ ac = txtAngleC->Text;
 		string angleCstr;
 		convertString(ac, angleCstr);
@@ -632,55 +707,55 @@ private: System::Void rbtnSelectScal_CheckedChanged(System::Object^  sender, Sys
 		 //Below code enables each textbox
 private: System::Void chkSideA_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkSideA->Checked == true){
+			 if (chkSideA->Checked){
 				 txtSideA->Enabled = true;
 			 }
-			 if (chkSideA->Checked == false){
+			 if (!chkSideA->Checked){
 				 txtSideA->Enabled = false;
 			 }
 		 }///end of chkSideA_CheckedChanged
 private: System::Void chkSideB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkSideB->Checked == true){
+			 if (chkSideB->Checked){
 				 txtSideB->Enabled = true;
 			 }
-			 if (chkSideB->Checked == false){
+			 if (!chkSideB->Checked){
 				 txtSideB->Enabled = false;
 			 }
 		 }///end of chkSideB_CheckedChanged
 private: System::Void chkSideC_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkSideC->Checked == true){
+			 if (chkSideC->Checked){
 				 txtSideC->Enabled = true;
 			 }
-			 if (chkSideC->Checked == false){
+			 if (!chkSideC->Checked){
 				 txtSideC->Enabled = false;
 			 }
 		 }///end of chkSideC_CheckedChanged
 private: System::Void chkAngleA_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkAngleA->Checked == true){
+			 if (chkAngleA->Checked){
 				 txtAngleA->Enabled = true;
 			 }
-			 if (chkAngleA->Checked == false){
+			 if (!chkAngleA->Checked){
 				 txtAngleA->Enabled = false;
 			 }
 		 }///end of chkAngleA_CheckedChanged
 private: System::Void chkAngleB_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkAngleB->Checked == true){
+			 if (chkAngleB->Checked){
 				 txtAngleB->Enabled = true;
 			 }
-			 if (chkAngleB->Checked == false){
+			 if (!chkAngleB->Checked){
 				 txtAngleB->Enabled = false;
 			 }
 		 }///end of chkAngleB_CheckedChanged
 private: System::Void chkAngleC_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 //if checked, the textbox will be enabled
-			 if (chkAngleC->Checked == true){
+			 if (chkAngleC->Checked){
 				 txtAngleC->Enabled = true;
 			 }
-			 if (chkAngleC->Checked == false){
+			 if (!chkAngleC->Checked){
 				 txtAngleC->Enabled = false;
 			 }
 		 }///end of chkAngleC_CheckedChanged
@@ -688,16 +763,16 @@ private: System::Void chkAngleC_CheckedChanged(System::Object^  sender, System::
 		 //Locks the other elements, and solves the triangle
 private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^  e) {
 			 buttonPressSetup();
-			 //Right Triangle trig
-			 if (rbtnSelectRight->Checked == true){
+			 ///Right Triangle trig
+			 if (rbtnSelectRight->Checked){
 				 //sees if two sides are known, and if so use pythagorean theorem
 				 if (isSideAInputted+isSideBInputted+isSideCInputted == 2){ // expression adds values of the bools, and proceeds if sum is 2
-					 if (isSideAInputted == true && isSideBInputted == true){//finding side C using A^2 + B^2 = C^2
+					 if (isSideAInputted && isSideBInputted){//finding side C using A^2 + B^2 = C^2
 						 sideC = sqrt(pow(sideA, 2) + pow(sideB, 2));
 						 isSideCInputted = true;
 					 }
 					 else{
-						 if (isSideAInputted == false){//finding side A
+						 if (!isSideAInputted){//finding side A
 							 sideA = sqrt(pow(sideC, 2) - pow(sideB, 2));
 							 isSideAInputted = true;
 						 }
@@ -707,8 +782,19 @@ private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^
 						 }
 					 }
 				 }
+				 //Angle C is known. If one of the other angles is known, find it by subtracting 90 from its complement
+				 if (isAngleAInputted || isAngleBInputted){
+					 if(!isAngleAInputted){
+						 angleA = 90 - angleB;
+					 }
+					 if(!isAngleBInputted){
+						 angleB = 90 - angleA;
+					 }
+				 }
 			 }
 		 } ///end of btnSolve_Click
+private: System::Void pnlAllControls_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		 }
 };
 }
 
