@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 
+#define PI 3.141592
+
 
 namespace TrigSolver {
 
@@ -663,6 +665,7 @@ void convertString ( String ^ s, string& os ) {
    os = chars;
    Marshal::FreeHGlobal(IntPtr((void*)chars));
 }
+
 //Will convert string to double
 double stringToDouble( const std::string& inputString)
  {
@@ -672,6 +675,11 @@ double stringToDouble( const std::string& inputString)
      return 0;
    return x;
 } 
+
+//Converts Degree Inputs to Radians
+double degToRad(double input){
+	return input * PI / 180;
+}
 
 
 ///CONTROLS' CODE
@@ -768,16 +776,16 @@ private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^
 				 //sees if two sides are known, and if so use pythagorean theorem
 				 if (isSideAInputted+isSideBInputted+isSideCInputted == 2){ // expression adds values of the bools, and proceeds if sum is 2
 					 if (isSideAInputted && isSideBInputted){//finding side C using A^2 + B^2 = C^2
-						 sideC = sqrt(pow(sideA, 2) + pow(sideB, 2));
+						 sideC = floor(sqrt(pow(sideA, 2) + pow(sideB, 2))*100+0.5)/100.0;
 						 isSideCInputted = true;
 					 }
 					 else{
 						 if (!isSideAInputted){//finding side A
-							 sideA = sqrt(pow(sideC, 2) - pow(sideB, 2));
+							 sideA = floor(sqrt(pow(sideC, 2) - pow(sideB, 2))*100+0.5)/100.0;
 							 isSideAInputted = true;
 						 }
 						 else{ // finding side B
-							 sideB = sqrt(pow(sideC, 2) - pow(sideA, 2));
+							 sideB = floor(sqrt(pow(sideC, 2) - pow(sideA, 2))*100+0.5)/100.0;
 							 isSideBInputted = true;
 						 }
 					 }
@@ -791,6 +799,15 @@ private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^
 						 angleB = 90 - angleA;
 					 }
 				 }
+				 //if <A is known, but not the opp side, figure that out.
+				if (isAngleAInputted && !isSideAInputted){
+					if (isSideCInputted){ // use cos to find side A
+						sideA = floor(sideC * cos(degToRad(angleA))*100+0.5)/100.0; // solves using cos(a), and rounds to two decimals
+					}
+					if (isSideBInputted){ // use tan to find side b
+						sideA = floor(sideB * tan(degToRad(angleA))*100+0.5)/100.0;
+					}
+				}
 			 }
 		 } ///end of btnSolve_Click
 private: System::Void pnlAllControls_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
