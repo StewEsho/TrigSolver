@@ -64,9 +64,9 @@ namespace TrigSolver {
 
 	private: System::Windows::Forms::Button^  btnSolve;
 	private: System::Windows::Forms::GroupBox^  grpSelectTriangle;
-	private: System::Windows::Forms::GroupBox^  grpDegreeRadian;
-	private: System::Windows::Forms::RadioButton^  rbtnAngleRadian;
-	private: System::Windows::Forms::RadioButton^  rbtnAngleDegree;
+
+
+
 	private: System::Windows::Forms::PictureBox^  picTriangleRight;
 
 	private: System::Windows::Forms::PictureBox^  picTriangleScal;
@@ -95,6 +95,9 @@ namespace TrigSolver {
 	private: System::Windows::Forms::Label^  lblAngleAAns;
 	private: System::Windows::Forms::Label^  lblSideCAns;
 	private: System::Windows::Forms::Label^  lblSideBAns;
+	private: System::Windows::Forms::GroupBox^  grpDegreeRadian;
+	private: System::Windows::Forms::RadioButton^  rbtnAngleRadian;
+	private: System::Windows::Forms::RadioButton^  rbtnAngleDegree;
 
 
 
@@ -135,9 +138,6 @@ namespace TrigSolver {
 			this->txtSideA = (gcnew System::Windows::Forms::TextBox());
 			this->btnSolve = (gcnew System::Windows::Forms::Button());
 			this->grpSelectTriangle = (gcnew System::Windows::Forms::GroupBox());
-			this->grpDegreeRadian = (gcnew System::Windows::Forms::GroupBox());
-			this->rbtnAngleRadian = (gcnew System::Windows::Forms::RadioButton());
-			this->rbtnAngleDegree = (gcnew System::Windows::Forms::RadioButton());
 			this->picTriangleRight = (gcnew System::Windows::Forms::PictureBox());
 			this->picTriangleScal = (gcnew System::Windows::Forms::PictureBox());
 			this->txtAngleC = (gcnew System::Windows::Forms::TextBox());
@@ -163,11 +163,14 @@ namespace TrigSolver {
 			this->lblSideCAns = (gcnew System::Windows::Forms::Label());
 			this->lblSideBAns = (gcnew System::Windows::Forms::Label());
 			this->lblSideAAns = (gcnew System::Windows::Forms::Label());
+			this->rbtnAngleDegree = (gcnew System::Windows::Forms::RadioButton());
+			this->rbtnAngleRadian = (gcnew System::Windows::Forms::RadioButton());
+			this->grpDegreeRadian = (gcnew System::Windows::Forms::GroupBox());
 			this->grpSelectTriangle->SuspendLayout();
-			this->grpDegreeRadian->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleRight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleScal))->BeginInit();
 			this->pnlAllControls->SuspendLayout();
+			this->grpDegreeRadian->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// rbtnSelectRight
@@ -255,41 +258,6 @@ namespace TrigSolver {
 			this->grpSelectTriangle->Size = System::Drawing::Size(114, 66);
 			this->grpSelectTriangle->TabIndex = 11;
 			this->grpSelectTriangle->TabStop = false;
-			// 
-			// grpDegreeRadian
-			// 
-			this->grpDegreeRadian->Controls->Add(this->rbtnAngleRadian);
-			this->grpDegreeRadian->Controls->Add(this->rbtnAngleDegree);
-			this->grpDegreeRadian->Location = System::Drawing::Point(421, 18);
-			this->grpDegreeRadian->Name = L"grpDegreeRadian";
-			this->grpDegreeRadian->Size = System::Drawing::Size(99, 66);
-			this->grpDegreeRadian->TabIndex = 12;
-			this->grpDegreeRadian->TabStop = false;
-			// 
-			// rbtnAngleRadian
-			// 
-			this->rbtnAngleRadian->AutoSize = true;
-			this->rbtnAngleRadian->CheckAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->rbtnAngleRadian->Location = System::Drawing::Point(30, 33);
-			this->rbtnAngleRadian->Name = L"rbtnAngleRadian";
-			this->rbtnAngleRadian->Size = System::Drawing::Size(64, 17);
-			this->rbtnAngleRadian->TabIndex = 1;
-			this->rbtnAngleRadian->Text = L"Radians";
-			this->rbtnAngleRadian->UseVisualStyleBackColor = true;
-			// 
-			// rbtnAngleDegree
-			// 
-			this->rbtnAngleDegree->AutoSize = true;
-			this->rbtnAngleDegree->CheckAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->rbtnAngleDegree->Checked = true;
-			this->rbtnAngleDegree->Location = System::Drawing::Point(29, 10);
-			this->rbtnAngleDegree->Name = L"rbtnAngleDegree";
-			this->rbtnAngleDegree->Size = System::Drawing::Size(65, 17);
-			this->rbtnAngleDegree->TabIndex = 0;
-			this->rbtnAngleDegree->TabStop = true;
-			this->rbtnAngleDegree->Text = L"Degrees";
-			this->rbtnAngleDegree->UseVisualStyleBackColor = true;
-			this->rbtnAngleDegree->CheckedChanged += gcnew System::EventHandler(this, &Form1::rbtnAngleDegree_CheckedChanged);
 			// 
 			// picTriangleRight
 			// 
@@ -525,17 +493,19 @@ namespace TrigSolver {
 			// lblAngleCAns
 			// 
 			this->lblAngleCAns->AutoSize = true;
-			this->lblAngleCAns->Location = System::Drawing::Point(485, 405);
+			this->lblAngleCAns->Location = System::Drawing::Point(471, 405);
 			this->lblAngleCAns->Name = L"lblAngleCAns";
-			this->lblAngleCAns->Size = System::Drawing::Size(0, 13);
+			this->lblAngleCAns->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
+			this->lblAngleCAns->Size = System::Drawing::Size(13, 13);
 			this->lblAngleCAns->TabIndex = 35;
-			this->lblAngleCAns->Text = L" ";
+			this->lblAngleCAns->Text = L"  ";
 			// 
 			// lblAngleBAns
 			// 
 			this->lblAngleBAns->AutoSize = true;
-			this->lblAngleBAns->Location = System::Drawing::Point(485, 279);
+			this->lblAngleBAns->Location = System::Drawing::Point(474, 279);
 			this->lblAngleBAns->Name = L"lblAngleBAns";
+			this->lblAngleBAns->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
 			this->lblAngleBAns->Size = System::Drawing::Size(10, 13);
 			this->lblAngleBAns->TabIndex = 34;
 			this->lblAngleBAns->Text = L" ";
@@ -543,8 +513,9 @@ namespace TrigSolver {
 			// lblAngleAAns
 			// 
 			this->lblAngleAAns->AutoSize = true;
-			this->lblAngleAAns->Location = System::Drawing::Point(485, 153);
+			this->lblAngleAAns->Location = System::Drawing::Point(474, 153);
 			this->lblAngleAAns->Name = L"lblAngleAAns";
+			this->lblAngleAAns->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
 			this->lblAngleAAns->Size = System::Drawing::Size(10, 13);
 			this->lblAngleAAns->TabIndex = 33;
 			this->lblAngleAAns->Text = L" ";
@@ -576,24 +547,61 @@ namespace TrigSolver {
 			this->lblSideAAns->TabIndex = 30;
 			this->lblSideAAns->Text = L" ";
 			// 
+			// rbtnAngleDegree
+			// 
+			this->rbtnAngleDegree->AutoSize = true;
+			this->rbtnAngleDegree->CheckAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->rbtnAngleDegree->Checked = true;
+			this->rbtnAngleDegree->Location = System::Drawing::Point(29, 10);
+			this->rbtnAngleDegree->Name = L"rbtnAngleDegree";
+			this->rbtnAngleDegree->Size = System::Drawing::Size(65, 17);
+			this->rbtnAngleDegree->TabIndex = 0;
+			this->rbtnAngleDegree->TabStop = true;
+			this->rbtnAngleDegree->Text = L"Degrees";
+			this->rbtnAngleDegree->UseVisualStyleBackColor = true;
+			this->rbtnAngleDegree->CheckedChanged += gcnew System::EventHandler(this, &Form1::rbtnAngleDegree_CheckedChanged);
+			// 
+			// rbtnAngleRadian
+			// 
+			this->rbtnAngleRadian->AutoSize = true;
+			this->rbtnAngleRadian->CheckAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->rbtnAngleRadian->Location = System::Drawing::Point(30, 33);
+			this->rbtnAngleRadian->Name = L"rbtnAngleRadian";
+			this->rbtnAngleRadian->Size = System::Drawing::Size(64, 17);
+			this->rbtnAngleRadian->TabIndex = 1;
+			this->rbtnAngleRadian->Text = L"Radians";
+			this->rbtnAngleRadian->UseVisualStyleBackColor = true;
+			// 
+			// grpDegreeRadian
+			// 
+			this->grpDegreeRadian->Controls->Add(this->rbtnAngleRadian);
+			this->grpDegreeRadian->Controls->Add(this->rbtnAngleDegree);
+			this->grpDegreeRadian->Location = System::Drawing::Point(421, 18);
+			this->grpDegreeRadian->Name = L"grpDegreeRadian";
+			this->grpDegreeRadian->Size = System::Drawing::Size(99, 66);
+			this->grpDegreeRadian->TabIndex = 12;
+			this->grpDegreeRadian->TabStop = false;
+			this->grpDegreeRadian->Enter += gcnew System::EventHandler(this, &Form1::grpDegreeRadian_Enter);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(534, 483);
 			this->Controls->Add(this->pnlAllControls);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Form1";
 			this->Text = L"TrigSolver by Stew Esho";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->grpSelectTriangle->ResumeLayout(false);
 			this->grpSelectTriangle->PerformLayout();
-			this->grpDegreeRadian->ResumeLayout(false);
-			this->grpDegreeRadian->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleRight))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picTriangleScal))->EndInit();
 			this->pnlAllControls->ResumeLayout(false);
 			this->pnlAllControls->PerformLayout();
+			this->grpDegreeRadian->ResumeLayout(false);
+			this->grpDegreeRadian->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -613,40 +621,45 @@ void buttonPressSetup(){
 	//disables all controls
 	pnlAllControls->Enabled = false;
 	//gets input from textboxes, and converts to ints
-	if (txtSideA->Enabled){
+	if (chkSideA->Checked){
 		String^ sa = txtSideA->Text;
 		string sideAstr;
 		convertString(sa, sideAstr);
 		sideA = stringToDouble(sideAstr);
 		isSideAInputted = true;
+		lblSideAAns->Text = sideA.ToString();
 	}
-	if (txtSideB->Enabled){
+	if (chkSideB->Checked){
 		String^ sb = txtSideB->Text;
 		string sideBstr;
 		convertString(sb, sideBstr);
 		sideB = stringToDouble(sideBstr);
 		isSideBInputted = true;
+		lblSideBAns->Text = sideB.ToString();
 	}
-	if (txtSideC->Enabled){
+	if (chkSideC->Checked){
 		String^ sc = txtSideC->Text;
 		string sideCstr;
 		convertString(sc, sideCstr);
 		sideC = stringToDouble(sideCstr);
 		isSideCInputted = true;
+		lblSideCAns->Text = sideC.ToString();
 	}
-	if (txtAngleA->Enabled){
+	if (chkAngleA->Checked){
 		String^ aa = txtAngleA->Text;
 		string angleAstr;
 		convertString(aa, angleAstr);
 		angleA = stringToDouble(angleAstr);
 		isAngleAInputted = true;
+		lblAngleAAns->Text = angleA.ToString();
 	}
-	if (txtAngleB->Enabled){
+	if (chkAngleB->Checked){
 		String^ ab = txtAngleB->Text;
 		string angleBstr;
 		convertString(ab, angleBstr);
 		angleB = stringToDouble(angleBstr);
 		isAngleBInputted = true;
+		lblAngleBAns->Text = angleB.ToString();
 	}
 	if (chkAngleC->Checked){
 		String^ ac = txtAngleC->Text;
@@ -654,6 +667,7 @@ void buttonPressSetup(){
 		convertString(ac, angleCstr);
 		angleC = stringToDouble(angleCstr);
 		isAngleCInputted = true;
+		lblAngleCAns->Text = angleC.ToString();
 	}
 }
 
@@ -680,7 +694,10 @@ double stringToDouble( const std::string& inputString)
 double degToRad(double input){
 	return input * PI / 180;
 }
-
+//Converts Radians to Degree
+double radToDeg(double input){
+	return input * 180 / PI;
+}
 
 ///CONTROLS' CODE
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
@@ -773,44 +790,109 @@ private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^
 			 buttonPressSetup();
 			 ///Right Triangle trig
 			 if (rbtnSelectRight->Checked){
-				 //sees if two sides are known, and if so use pythagorean theorem
-				 if (isSideAInputted+isSideBInputted+isSideCInputted == 2){ // expression adds values of the bools, and proceeds if sum is 2
-					 if (isSideAInputted && isSideBInputted){//finding side C using A^2 + B^2 = C^2
-						 sideC = floor(sqrt(pow(sideA, 2) + pow(sideB, 2))*100+0.5)/100.0;
-						 isSideCInputted = true;
-					 }
-					 else{
-						 if (!isSideAInputted){//finding side A
-							 sideA = floor(sqrt(pow(sideC, 2) - pow(sideB, 2))*100+0.5)/100.0;
-							 isSideAInputted = true;
-						 }
-						 else{ // finding side B
-							 sideB = floor(sqrt(pow(sideC, 2) - pow(sideA, 2))*100+0.5)/100.0;
-							 isSideBInputted = true;
-						 }
-					 }
-				 }
-				 //Angle C is known. If one of the other angles is known, find it by subtracting 90 from its complement
-				 if (isAngleAInputted || isAngleBInputted){
-					 if(!isAngleAInputted){
-						 angleA = 90 - angleB;
-					 }
-					 if(!isAngleBInputted){
-						 angleB = 90 - angleA;
-					 }
-				 }
-				 //if <A is known, but not the opp side, figure that out.
+				//sees if two sides are known, and if so use pythagorean theorem
+				if (isSideAInputted+isSideBInputted+isSideCInputted == 2){ // expression adds values of the bools, and proceeds if sum is 2
+					if (isSideAInputted && isSideBInputted){//finding side C using A^2 + B^2 = C^2
+						sideC = floor(sqrt(pow(sideA, 2) + pow(sideB, 2))*100+0.5)/100.0;
+						isSideCInputted = true;
+						lblSideCAns->Text = sideC.ToString();
+					}
+					else{
+						if (!isSideAInputted){//finding side A
+							sideA = floor(sqrt(pow(sideC, 2) - pow(sideB, 2))*100+0.5)/100.0;
+							isSideAInputted = true;
+							lblSideAAns->Text = sideA.ToString();
+						}
+						else{ // finding side B
+							sideB = floor(sqrt(pow(sideC, 2) - pow(sideA, 2))*100+0.5)/100.0;
+							isSideBInputted = true;
+							lblSideBAns->Text = sideB.ToString();
+						}
+					}
+				}
+				//Angle C is known. If one of the other angles is known, find it by subtracting 90 from its complement
+				if (isAngleAInputted || isAngleBInputted){
+					if(!isAngleAInputted){
+						angleA = 90 - angleB;
+						isAngleAInputted = true;
+						lblAngleAAns->Text = angleA.ToString();
+					}
+					if(!isAngleBInputted){
+						angleB = 90 - angleA;
+						isAngleBInputted = true;
+						lblAngleBAns->Text = angleB.ToString();
+					}
+				}
+				//if <A is known, but not |A, figures that out.
 				if (isAngleAInputted && !isSideAInputted){
 					if (isSideCInputted){ // use cos to find side A
 						sideA = floor(sideC * cos(degToRad(angleA))*100+0.5)/100.0; // solves using cos(a), and rounds to two decimals
+						lblSideAAns->Text = sideA.ToString();
+						isSideAInputted = true;
 					}
-					if (isSideBInputted){ // use tan to find side b
+					if (isSideBInputted){ // use tan to find side A
 						sideA = floor(sideB * tan(degToRad(angleA))*100+0.5)/100.0;
+						lblSideAAns->Text = sideA.ToString();
+						isSideAInputted = true;
 					}
 				}
+				// <B is known, but not |B
+				if (isAngleBInputted && !isSideBInputted){
+					if (isSideCInputted){ // use sine to find side B
+						sideB = floor(sideC * sin(degToRad(angleB))*100+0.5)/100.0; // solves using cos(a), and rounds to two decimals
+						lblSideAAns->Text = sideB.ToString();
+						isSideAInputted = true;
+					}
+					if (isSideAInputted){ // use tan to find side B
+						sideB = floor(sideA * tan(degToRad(angleB))*100+0.5)/100.0;
+						lblSideBAns->Text = sideB.ToString();
+						isSideBInputted = true;
+					}
+				}
+				if (isAngleCInputted && !isSideCInputted){ //<C is known, not |C
+					//since <C is 90 deg, we need a side, and then either angle
+					//code goes through side a, if not inputted then it goes through side b
+					if (isSideAInputted){ 
+						if (isAngleAInputted){ //use sin
+							sideC = floor(sideA / sin(degToRad(angleA))*100+0.5)/100.0;
+							lblSideCAns->Text = sideC.ToString();
+							isSideCInputted = true;
+						}
+						if (isAngleBInputted){ //use sin
+							sideC = floor(sideA / cos(degToRad(angleB))*100+0.5)/100.0;
+							lblSideCAns->Text = sideC.ToString();
+							isSideCInputted = true;
+						}
+					}
+					if (isSideBInputted){ 
+						if (isAngleAInputted){ //use sin
+							sideC = floor(sideB / cos(degToRad(angleA))*100+0.5)/100.0;
+							lblSideCAns->Text = sideC.ToString();
+							isSideCInputted = true;
+						}
+						if (isAngleBInputted){ //use sin
+							sideC = floor(sideB / sin(degToRad(angleB))*100+0.5)/100.0;
+							lblSideCAns->Text = sideC.ToString();
+							isSideCInputted = true;
+						}
+					}
+				}
+				if (!isAngleAInputted && !isAngleBInputted){
+					//angle A
+					angleA = floor(radToDeg(atan(sideA / sideB))*100+0.5)/100.0;
+					lblAngleAAns->Text = angleA.ToString();
+					isAngleAInputted = true;
+					//angle B
+					angleB = floor(radToDeg(atan(sideB / sideA))*100+0.5)/100.0;
+					lblAngleBAns->Text = angleB.ToString();
+					isAngleBInputted = true;
+				}
 			 }
+			 pnlAllControls->Enabled = true;
 		 } ///end of btnSolve_Click
 private: System::Void pnlAllControls_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+		 }
+private: System::Void grpDegreeRadian_Enter(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }
